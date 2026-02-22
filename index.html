@@ -4,8 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Outfit:wght@100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+     <header class="py-5 w-[80%] mx-auto">
+        <div>
+            <h1 class="text-3xl font-bold mb-4">Job Application Tracker</h1>
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+            <div class="total bg-white p-2.5 pl-4 shadow">
+                <h3>Total</h3>
+                <p class= "text-[#002C5C] font-semibold">8</p>
+            </div>
+            <div class="interview bg-white p-2.5 pl-4 shadow">
+                <h3>Interview</h3>
+                <p class= "text-green-600 font-semibold">0</p>
+            </div>
+            <div class="rejected bg-white p-2.5 pl-4 shadow">
+                <h3>Rejected</h3>
+                <p class= "text-red-600 font-semibold">0</p>
+            </div>
+        </div>
+     </header>
+
+     <section class="flex justify-between w-[80%] mx-auto pb-3">
+        <div>
+            <h2 class="text-xl font-semibold">Available Jobs</h2>
+        </div>
+        <div>
+            <p><span>8</span> Jobs</p>
+        </div>
+     </section>
+
+     <div class="w-[80%] mx-auto space-x-2 pb-5">
+        <button class="btn btn-primary">All</button>
+        <button class="btn">Interview</button>
+        <button class="btn">Rejected</button>
+     </div>
+
+     <section class="w-[80%] mx-auto">
+        <div class="card-container">
+        <div class="card bg-white p-6 shadow space-y-3">
+            <h2 class="text-xl font-semibold">Mobile First Corp</h2>
+            <p class="text-gray-600">React Native Developer</p>
+            <p class="text-gray-600">Remote
+ • 
+Full-time 
+•
+ $130,000 - $175,000</p>
+
+             <button class="bg-gray-600">Not Applied</button>
+             <p class="text-gray-600">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
+            
+             <div class="buttons"> 
+                 <button class="btn btn-success btn-outline">INTERVIEW</button>
+             <button class="btn btn-error btn-outline">REJECTED</button>
+             </div>
+        </div>
+     </div>
+     </section>
+     
 </body>
 </html>
