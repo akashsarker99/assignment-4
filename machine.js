@@ -1,0 +1,42 @@
+
+function toggleBtn (id){
+  let allOption = document.getElementById('all-toggle');
+  let interviewOption = document.getElementById('interview-toggle');
+  let rejectedOptional = document.getElementById('rejected-toggle');
+
+  allOption.classList.add('hidden');
+  interviewOption.classList.add('hidden');
+  rejectedOptional.classList.add('hidden');
+
+  let selectedOption = document.getElementById(id);
+  selectedOption.classList.remove('hidden');
+
+  let allBtn = document.getElementById('all-btn');
+  let interviewBtn = document.getElementById('interview-btn');
+  let rejectedBtn = document.getElementById('rejected-btn');
+
+  allBtn.classList.remove('btn-primary');
+  interviewBtn.classList.remove('btn-primary');
+  rejectedBtn.classList.remove('btn-primary');
+
+  if(id == 'all-toggle'){
+    allBtn.classList.add('btn-primary');
+    total2.innerText = totalJobs.children.length;
+  }
+  else if(id == 'interview-toggle'){
+    interviewBtn.classList.add('btn-primary')
+    total2.innerHTML =`${interviewTotal.length} of ${totalJobs.children.length}`;
+  }
+  else if(id == 'rejected-toggle'){
+    rejectedBtn.classList.add('btn-primary')
+  }
+
+}
+
+
+function counBox(){
+    total.innerText = totalJobs.children.length; 
+    interviewCount.innerText = interviewTotal.children.length;
+    rejectedCount.innerText = rejectedTotal.children.length;
+}
+

@@ -29,15 +29,15 @@
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-3">
         <div class="total bg-white p-2.5 pl-4 shadow">
           <h3>Total</h3>
-          <p class="text-[#002C5C] font-semibold">8</p>
+          <p id="total-count" class="text-[#002C5C] font-semibold">0</p>
         </div>
         <div class="interview bg-white p-2.5 pl-4 shadow">
           <h3>Interview</h3>
-          <p class="text-green-500 font-semibold">0</p>
+          <p id="interview-count" class="text-green-500 font-semibold">0</p>
         </div>
         <div class="rejected bg-white p-2.5 pl-4 shadow">
           <h3>Rejected</h3>
-          <p class="text-red-600 font-semibold">0</p>
+          <p id="rejected-count" class="text-red-600 font-semibold">0</p>
         </div>
       </div><br>
 
@@ -51,19 +51,17 @@
         <h2 class="text-xl font-semibold">Available Jobs</h2>
       </div>
       <div>
-        <p><span>8</span> Jobs</p>
+        <p><span id="total-jobs">0</span> Jobs</p>
       </div>
     </section>
 
     <div class="w-[80%] mx-auto space-x-2 pb-5">
-      <button class="btn btn-primary">All</button>
-      <button class="btn">Interview</button>
-      <button class="btn">Rejected</button>
+      <button onclick="toggleBtn('all-toggle')" id="all-btn" class="btn btn-primary">All</button>
+      <button onclick="toggleBtn('interview-toggle')" id="interview-btn" class="btn">Interview</button>
+      <button onclick="toggleBtn('rejected-toggle')" id="rejected-btn" class="btn">Rejected</button>
     </div>
 
-    <section id="all-toggle" class="w-[80%] mx-auto">
-      <div class="card-container space-y-3">
-
+    <section id="all-toggle" class="w-[80%] mx-auto space-y-3">
         <div class="bg-white p-6 shadow flex justify-between flex-col sm:flex-row gap-2">
            <div class="card-left space-y-3">
              <h2 class="text-xl font-semibold">Mobile First Corp</h2>
@@ -77,8 +75,8 @@
           </p>
 
           <div class="buttons flex gap-3 flex-col md:flex-row">
-            <button class="btn btn-success btn-outline">INTERVIEW</button>
-            <button class="btn btn-error btn-outline">REJECTED</button>
+            <button class="inter-card-btn btn btn-success btn-outline">INTERVIEW</button>
+            <button class="reject-card-btn btn btn-error btn-outline">REJECTED</button>
           </div>
          </div>
            <div class="card-right">
@@ -101,8 +99,8 @@
           </p>
 
           <div class="buttons flex gap-3 flex-col md:flex-row">
-            <button class="btn btn-success btn-outline">INTERVIEW</button>
-            <button class="btn btn-error btn-outline">REJECTED</button>
+            <button class="inter-card-btn btn btn-success btn-outline">INTERVIEW</button>
+            <button class="reject-card-btn btn btn-error btn-outline">REJECTED</button>
           </div>
          </div>
          <div class="card-right">
@@ -126,8 +124,8 @@
           </p>
 
           <div class="buttons flex gap-3 flex-col md:flex-row">
-            <button class="btn btn-success btn-outline">INTERVIEW</button>
-            <button class="btn btn-error btn-outline">REJECTED</button>
+            <button class="inter-card-btn btn btn-success btn-outline">INTERVIEW</button>
+            <button class="reject-card-btn btn btn-error btn-outline">REJECTED</button>
           </div>
           </div>
           <div class="card-right">
@@ -151,8 +149,8 @@
           </p>
 
           <div class="buttons flex gap-3 flex-col md:flex-row">
-            <button class="btn btn-success btn-outline">INTERVIEW</button>
-            <button class="btn btn-error btn-outline">REJECTED</button>
+            <button class="inter-card-btn btn btn-success btn-outline">INTERVIEW</button>
+            <button class="reject-card-btn btn btn-error btn-outline">REJECTED</button>
           </div>
          </div>
           <div class="card-right">
@@ -177,8 +175,8 @@
           </p>
 
           <div class="buttons flex gap-3 flex-col md:flex-row">
-            <button class="btn btn-success btn-outline">INTERVIEW</button>
-            <button class="btn btn-error btn-outline">REJECTED</button>
+            <button class="inter-card-btn btn btn-success btn-outline">INTERVIEW</button>
+            <button class="reject-card-btn btn btn-error btn-outline">REJECTED</button>
           </div>
           </div>
          <div class="card-right">
@@ -203,8 +201,8 @@
           </p>
 
           <div class="buttons flex gap-3 flex-col md:flex-row">
-            <button class="btn btn-success btn-outline">INTERVIEW</button>
-            <button class="btn btn-error btn-outline">REJECTED</button>
+            <button class="inter-card-btn btn btn-success btn-outline">INTERVIEW</button>
+            <button class="reject-card-btn btn btn-error btn-outline">REJECTED</button>
           </div>
         </div>
            <div class="card-right">
@@ -227,8 +225,8 @@
           </p>
 
           <div class="buttons flex gap-3 flex-col md:flex-row">
-            <button class="btn btn-success btn-outline">INTERVIEW</button>
-            <button class="btn btn-error btn-outline">REJECTED</button>
+            <button class="inter-card-btn btn btn-success btn-outline">INTERVIEW</button>
+            <button class="reject-card-btn btn btn-error btn-outline">REJECTED</button>
           </div>
     </div>
            <div class="card-right">
@@ -253,17 +251,36 @@
           </p>
 
           <div class="buttons flex gap-3 flex-col md:flex-row">
-            <button class="btn btn-success btn-outline">INTERVIEW</button>
-            <button class="btn btn-error btn-outline">REJECTED</button>
+            <button class="inter-card-btn btn btn-success btn-outline">INTERVIEW</button>
+            <button class="reject-card-btn btn btn-error btn-outline">REJECTED</button>
           </div>
           </div>
            <div class="card-right">
             <button class="btn btn-error h-10 w-10 btn-outline rounded-full"><i class="fa-regular fa-trash-can"></i></button>
          </div>
         </div>
-      </div>
     </section>
 
-   
+    <section id="interview-toggle" class="w-[80%] mx-auto bg-white p-28" >
+        <div class="text-center">
+          <div class="w-[100px] mx-auto">
+              <img src="./jobs.png" alt="">
+          </div>
+            <h2>No jobs available</h2>
+            <p>Check back soon for new job opportunities</p>
+        </div>
+    </section>
+    <section id="rejected-toggle" class="w-[80%] mx-auto bg-white p-28" >
+        <div class="text-center">
+          <div class="w-[100px] mx-auto">
+              <img src="./jobs.png" alt="">
+          </div>
+            <h2>No jobs available</h2>
+            <p>Check back soon for new job opportunities</p>
+        </div>
+    </section>
+
+    <script src="./machine.js"></script>
+    <script src="./script.js"></script>
   </body>
 </html>
