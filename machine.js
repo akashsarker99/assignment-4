@@ -33,10 +33,13 @@ function toggleBtn (id){
 
 }
 
-
-function counBox(){
+function countBox(){
     total.innerText = totalJobs.children.length; 
-    interviewCount.innerText = interviewTotal.children.length;
-    rejectedCount.innerText = rejectedTotal.children.length;
+    interviewCount.innerText = interviewTotal.length;
+    rejectedCount.innerText = rejectedTotal.length;
 }
+
+
+
+
 

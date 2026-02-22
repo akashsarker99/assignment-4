@@ -3,4 +3,14 @@
 body{
     font-family: "Outfit", sans-serif;
     background-color: #EEF4FF;
+    padding-bottom: 20px;
+}
+
+.inter-border{
+  background-color: rgb(13, 171, 13);
+    color: rgb(255, 255, 255);
+}
+.reject-border{
+       background-color: red;
+    color: rgb(231, 231, 231);
 }
