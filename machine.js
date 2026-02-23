@@ -1,5 +1,6 @@
 
 function toggleBtn (id){
+  cStatus = id;
   let allOption = document.getElementById('all-toggle');
   let interviewOption = document.getElementById('interview-toggle');
   let rejectedOptional = document.getElementById('rejected-toggle');
@@ -26,9 +27,12 @@ function toggleBtn (id){
   else if(id == 'interview-toggle'){
     interviewBtn.classList.add('btn-primary')
     total2.innerHTML =`${interviewTotal.length} of ${totalJobs.children.length}`;
+    creatingInterview();
   }
   else if(id == 'rejected-toggle'){
     rejectedBtn.classList.add('btn-primary')
+     total2.innerHTML =`${rejectedTotal.length} of ${totalJobs.children.length}`;
+     creatingRejected();
   }
 
 }

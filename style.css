@@ -8,9 +8,11 @@ body{
 
 .inter-border{
   background-color: rgb(13, 171, 13);
+  text-align: center;
     color: rgb(255, 255, 255);
 }
 .reject-border{
        background-color: red;
+       text-align: center;
     color: rgb(231, 231, 231);
 }

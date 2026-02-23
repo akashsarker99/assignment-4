@@ -1,5 +1,6 @@
 let interviewTotal = [];
 let rejectedTotal = [];
+let cStatus = 'all';
 
 let total = document.getElementById('total-count');
 let total2 = document.getElementById('total-jobs');
@@ -7,11 +8,77 @@ let interviewCount = document.getElementById('interview-count');
 let rejectedCount = document.getElementById('rejected-count');
 let totalJobs = document.getElementById('all-toggle');
 let interviewToggle = document.getElementById('interview-toggle');
+let rejectedToggle = document.getElementById('rejected-toggle');
 total2.innerText = totalJobs.children.length;
 countBox();
 
+ function creatingInterview(){
+    interviewToggle.innerHTML = ``;
+    for(let element of interviewTotal){
+    
+          let div = document.createElement('div');
+       div.className = "bg-white p-6 shadow space-y-3 flex justify-between flex-col sm:flex-row gap-2"
+       div.innerHTML = `
+             <div class="card-left space-y-3">
+            <h2 class="text-xl font-semibold">${element.jobName}</h2>
+          <p class="text-gray-600 p1">${element.jobPosition}</p>
+          <p class="text-gray-600 p2">
+           ${element.salary}
+          </p>
 
-let mainContainer = document.querySelector('main');
+          <h3 class="bg-[#EEF4FF] w-[130px] px-3 py-1 inter-border">${element.status}</h3>
+          <p class="description text-gray-600">
+          ${element.description}
+          </p>
+
+          <div class="buttons flex gap-3 flex-col md:flex-row">
+            <button class="inter-card-btn btn btn-success btn-outline inter-btn">INTERVIEW</button>
+            <button class="reject-card-btn btn btn-error btn-outline">REJECTED</button>
+          </div>
+          </div>
+           <div class="card-right">
+            <button class="btn btn-error h-10 w-10 btn-outline rounded-full"><i class="fa-regular fa-trash-can"></i></button>
+         </div>
+    `
+    interviewToggle.appendChild(div);
+    }
+   
+ }
+ function creatingRejected(){
+    rejectedToggle.innerHTML = '';
+    for(let element of rejectedTotal){
+    
+          let div = document.createElement('div');
+       div.className = "bg-white p-6 shadow space-y-3 flex justify-between flex-col sm:flex-row gap-2"
+       div.innerHTML = `
+             <div class="card-left space-y-3">
+            <h2 class="text-xl font-semibold">${element.jobName}</h2>
+          <p class="text-gray-600 p1">${element.jobPosition}</p>
+          <p class="text-gray-600 p2">
+           ${element.salary}
+          </p>
+
+          <h3 class="bg-[#EEF4FF] w-[130px] px-3 py-1 reject-border">${element.status}</h3>
+          <p class="description text-gray-600">
+          ${element.description}
+          </p>
+
+          <div class="buttons flex gap-3 flex-col md:flex-row">
+            <button class="inter-card-btn btn btn-success btn-outline inter-btn">INTERVIEW</button>
+            <button class="reject-card-btn btn btn-error btn-outline">REJECTED</button>
+          </div>
+          </div>
+           <div class="card-right">
+            <button class="btn btn-error h-10 w-10 btn-outline rounded-full"><i class="fa-regular fa-trash-can"></i></button>
+         </div>
+    `
+     rejectedToggle.appendChild(div);
+    }
+   
+ }
+
+
+ let mainContainer = document.querySelector('main');
 
  mainContainer.addEventListener('click', function(event){
 
@@ -33,56 +100,54 @@ let mainContainer = document.querySelector('main');
 
     let jobexist = interviewTotal.find(item=> item.jobName == jobInfo.jobName)
     let statuss = parentNode.querySelector('h3');
+    statuss.classList.remove('reject-border', 'inter-border');
     statuss.innerText = 'INTERVIEW';
     statuss.classList.add('inter-border');
     if(!jobexist){
         interviewTotal.push(jobInfo)
     }
-   countBox();
-   creatingEl();
-  }
- })
 
+    rejectedTotal = rejectedTotal.filter(item=> item.jobName != jobInfo.jobName)
 
- function creatingEl(){
-    interviewToggle.innerHTML = '';
-    for(let element of interviewTotal){
-    
-          let div = document.createElement('div');
-       div.className = "bg-white p-6 shadow space-y-3 flex justify-between flex-col sm:flex-row gap-2"
-       div.innerHTML = `
-             <div class="card-left space-y-3">
-            <h2 class="text-xl font-semibold">${element.jobName}</h2>
-          <p class="text-gray-600 p1">${element.jobPosition}</p>
-          <p class="text-gray-600 p2">
-           ${element.salary}
-          </p>
-
-          <h3 class="bg-[#EEF4FF] w-[130px] px-3 py-1">${element.status}</h3>
-          <p class="description text-gray-600">
-          ${element.description}
-          </p>
-
-          <div class="buttons flex gap-3 flex-col md:flex-row">
-            <button class="inter-card-btn btn btn-success btn-outline">INTERVIEW</button>
-            <button class="reject-card-btn btn btn-error btn-outline">REJECTED</button>
-          </div>
-          </div>
-           <div class="card-right">
-            <button class="btn btn-error h-10 w-10 btn-outline rounded-full"><i class="fa-regular fa-trash-can"></i></button>
-         </div>
-    `
-    interviewToggle.appendChild(div);
+    if(cStatus == 'rejected-toggle'){
+      creatingRejected();
     }
+
+   countBox();
    
+  }
+  else if(event.target.classList.contains('reject-card-btn')){
+    let parentNode = event.target.parentNode.parentNode.parentNode;
+
+  let jobName = parentNode.querySelector('h2').innerText;
+  let jobPosition = parentNode.querySelector('.p1').innerText;
+  let salary = parentNode.querySelector('.p2').innerText;
+  let status = parentNode.querySelector('h3').innerText;
+  let description = parentNode.querySelector('.description').innerText;
+  const jobInfo = {
+    jobName,
+    jobPosition,
+    salary,
+    status:"REJECTED",
+    description
  }
 
+    let jobexist = rejectedTotal.find(item=> item.jobName == jobInfo.jobName)
+    let statuss = parentNode.querySelector('h3');
+    statuss.classList.remove('reject-border', 'inter-border');
+    statuss.innerText = 'REJECTED';
+    statuss.classList.add('reject-border');
+    if(!jobexist){
+        rejectedTotal.push(jobInfo)
+    }
 
+    interviewTotal = interviewTotal.filter(item=> item.jobName != jobInfo.jobName)
 
-
-
-
-
-
-
-
+    if(cStatus == 'interview-toggle'){
+      creatingInterview();
+    }
+   countBox();
+  }
+  
+  
+ })
