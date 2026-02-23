@@ -39,11 +39,8 @@ function toggleBtn (id){
 
 function countBox(){
     total.innerText = totalJobs.children.length; 
+    total2.innerText = totalJobs.children.length;
     interviewCount.innerText = interviewTotal.length;
     rejectedCount.innerText = rejectedTotal.length;
 }
-
-
-
-
 
