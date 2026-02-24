@@ -58,3 +58,28 @@ function findInMain(job){
 
 }
 
+function findInMainForRejected(job){
+let mainCards = totalJobs.querySelectorAll('.bg-white');
+   
+  for(let card of mainCards){
+     let name = card.querySelector('h2').innerText;
+     if(job == name){
+      let mainStatus = card.querySelector('h3');
+       mainStatus.innerText = "REJECTED";
+      mainStatus.classList.add("reject-border");
+     }
+  }
+}
+
+function findInMainForInterview(job){
+  let mainCards = totalJobs.querySelectorAll('.bg-white');
+  for(let card of mainCards){
+     let name = card.querySelector('h2').innerText;
+     if(job == name){
+      let mainStatus = card.querySelector('h3');
+      mainStatus.innerText = "INTERVIEW";
+      mainStatus.classList.remove('reject-border');
+      mainStatus.classList.add("inter-border");
+     }
+  }
+}

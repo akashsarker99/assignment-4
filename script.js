@@ -107,7 +107,6 @@ mainContainer.addEventListener("click", function (event) {
     let jobName = parentNode.querySelector("h2").innerText;
     let jobPosition = parentNode.querySelector(".p1").innerText;
     let salary = parentNode.querySelector(".p2").innerText;
-    let status = parentNode.querySelector("h3").innerText;
     let description = parentNode.querySelector(".description").innerText;
     const jobInfo = {
       jobName,
@@ -127,6 +126,7 @@ mainContainer.addEventListener("click", function (event) {
     }
 
     rejectedTotal = rejectedTotal.filter((item) => item.jobName != jobInfo.jobName);
+    findInMainForInterview(jobName);
 
     if (cStatus == "rejected-toggle") {
       creatingRejected();
@@ -139,7 +139,6 @@ mainContainer.addEventListener("click", function (event) {
     let jobName = parentNode.querySelector("h2").innerText;
     let jobPosition = parentNode.querySelector(".p1").innerText;
     let salary = parentNode.querySelector(".p2").innerText;
-    let status = parentNode.querySelector("h3").innerText;
     let description = parentNode.querySelector(".description").innerText;
     const jobInfo = {
       jobName,
@@ -159,6 +158,7 @@ mainContainer.addEventListener("click", function (event) {
     }
 
     interviewTotal = interviewTotal.filter((item) => item.jobName != jobInfo.jobName);
+    findInMainForRejected(jobName);
 
     if (cStatus == "interview-toggle") {
       creatingInterview();
