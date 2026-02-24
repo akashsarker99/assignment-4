@@ -1,6 +1,6 @@
 let interviewTotal = [];
 let rejectedTotal = [];
-let cStatus = "all";
+let cStatus = "all-toggle";
 
 let total = document.getElementById("total-count");
 let total2 = document.getElementById("total-jobs");
@@ -13,6 +13,18 @@ countBox();
 
 function creatingInterview() {
   interviewToggle.innerHTML = ``;
+  if(interviewTotal.length == 0){
+    interviewToggle.innerHTML = `
+       <div class="text-center mx-auto bg-white mb-5 p-5 md:p-28">
+          <div class="w-[100px] mx-auto">
+              <img src="./jobs.png" alt="">
+          </div>
+            <h2>No jobs available</h2>
+            <p>Check back soon for new job opportunities</p>
+        </div>
+    `
+    return;
+  }
   for (let element of interviewTotal) {
     let div = document.createElement("div");
     div.className =
@@ -44,6 +56,18 @@ function creatingInterview() {
 }
 function creatingRejected() {
   rejectedToggle.innerHTML = "";
+    if(rejectedTotal.length == 0){
+    rejectedToggle.innerHTML = `
+       <div class="text-center mx-auto bg-white mb-5 p-5 md:p-28">
+          <div class="w-[100px] mx-auto">
+              <img src="./jobs.png" alt="">
+          </div>
+            <h2>No jobs available</h2>
+            <p>Check back soon for new job opportunities</p>
+        </div>
+    `
+    return;
+  }
   for (let element of rejectedTotal) {
     let div = document.createElement("div");
     div.className =
@@ -93,9 +117,7 @@ mainContainer.addEventListener("click", function (event) {
       description,
     };
 
-    let jobexist = interviewTotal.find(
-      (item) => item.jobName == jobInfo.jobName,
-    );
+    let jobexist = interviewTotal.find((item) => item.jobName == jobInfo.jobName);
     let statuss = parentNode.querySelector("h3");
     statuss.classList.remove("reject-border", "inter-border");
     statuss.innerText = "INTERVIEW";
@@ -109,9 +131,9 @@ mainContainer.addEventListener("click", function (event) {
     if (cStatus == "rejected-toggle") {
       creatingRejected();
     }
-
-    countBox();
-  } else if (event.target.classList.contains("reject-card-btn")) {
+     countBox();
+  } 
+  else if (event.target.classList.contains("reject-card-btn")) {
     let parentNode = event.target.parentNode.parentNode.parentNode;
 
     let jobName = parentNode.querySelector("h2").innerText;
@@ -127,9 +149,7 @@ mainContainer.addEventListener("click", function (event) {
       description,
     };
 
-    let jobexist = rejectedTotal.find(
-      (item) => item.jobName == jobInfo.jobName,
-    );
+    let jobexist = rejectedTotal.find((item) => item.jobName == jobInfo.jobName);
     let statuss = parentNode.querySelector("h3");
     statuss.classList.remove("reject-border", "inter-border");
     statuss.innerText = "REJECTED";
@@ -147,29 +167,32 @@ mainContainer.addEventListener("click", function (event) {
   } 
   else if (event.target.closest(".delete-btn")) {
     let card = event.target.closest(".bg-white");
-   if(cStatus == 'all'){
+    let job = card.querySelector('h2').innerText;
+   if(cStatus == 'all-toggle'){
     let parentNode = card.parentNode;
     parentNode.removeChild(card);
+    interviewTotal = interviewTotal.filter(item => item.jobName != job);
+    rejectedTotal = rejectedTotal.filter(item => item.jobName != job);
     countBox();
    }
     else if(cStatus == 'interview-toggle'){
-       let job = card.querySelector('h2').innerText;
     interviewTotal = interviewTotal.filter((item) => item.jobName != job);
+    findInMain(job);
      countBox();
      total2.innerHTML =`${interviewTotal.length} of ${totalJobs.children.length}`;
      creatingInterview();
-     if(interviewTotal.length == 0){
-        interviewToggle.innerHTML = `
-        <div class="text-center mx-auto bg-white mb-5 p-5 md:p-28">
-          <div class="w-[100px] mx-auto">
-              <img src="./jobs.png" alt="">
-          </div>
-            <h2>No jobs available</h2>
-            <p>Check back soon for new job opportunities</p>
-        </div>
-        `
-     }
+    
+    }
+    else if(cStatus == 'rejected-toggle'){
+       let job = card.querySelector('h2').innerText;
+    rejectedTotal = rejectedTotal.filter((item) => item.jobName != job);
+    findInMain(job);
+     countBox();
+     total2.innerHTML =`${interviewTotal.length} of ${totalJobs.children.length}`;
+     creatingRejected();
     
     }
   }
 });
+
+

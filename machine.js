@@ -44,3 +44,17 @@ function countBox(){
     rejectedCount.innerText = rejectedTotal.length;
 }
 
+function findInMain(job){
+  let mainCards = totalJobs.querySelectorAll('.bg-white');
+   
+  for(let card of mainCards){
+     let name = card.querySelector('h2').innerText;
+     if(job == name){
+      let mainStatus = card.querySelector('h3');
+       mainStatus.innerText = "NOT APPLIED";
+      mainStatus.classList.remove("reject-border", "inter-border");
+     }
+  }
+
+}
+
