@@ -170,6 +170,7 @@ mainContainer.addEventListener("click", function (event) {
   else if (event.target.closest(".delete-btn")) {
     let card = event.target.closest(".bg-white");
     let job = card.querySelector('h2').innerText;
+    
    if(cStatus == 'all-toggle'){
     let parentNode = card.parentNode;
     parentNode.removeChild(card);
