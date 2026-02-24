@@ -16,3 +16,18 @@ body{
        text-align: center;
     color: rgb(231, 231, 231);
 }
+.greenBorder{
+    border-left: 4px solid transparent;
+    transition: all 0.3 ease-in-out;
+}
+.greenBorder:hover{
+  border-left: 4px solid rgb(13, 183, 13);
+
+}
+.redBorder{
+    border-left: 4px solid transparent;
+    transition: all 0.3 ease-in-out;
+}
+.redBorder:hover{
+   border-left: 4px solid red;
+}

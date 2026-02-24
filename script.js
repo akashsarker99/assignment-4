@@ -28,7 +28,7 @@ function creatingInterview() {
   for (let element of interviewTotal) {
     let div = document.createElement("div");
     div.className =
-      "bg-white p-6 shadow space-y-3 flex justify-between flex-col sm:flex-row gap-2";
+      "bg-white p-6 shadow space-y-3 flex justify-between flex-col sm:flex-row gap-2 transition-all duration-300 ease-in-out border-l-4 border-transparent hover:translate-x-1 hover:-translate-y-1 hover:border-green-500";
     div.innerHTML = `
              <div class="card-left space-y-3">
             <h2 class="text-xl font-semibold">${element.jobName}</h2>
@@ -71,7 +71,7 @@ function creatingRejected() {
   for (let element of rejectedTotal) {
     let div = document.createElement("div");
     div.className =
-      "bg-white p-6 shadow space-y-3 flex justify-between flex-col sm:flex-row gap-2";
+      "bg-white p-6 shadow space-y-3 flex justify-between flex-col sm:flex-row gap-2 transition-all duration-300 ease-in-out border-l-4 border-transparent hover:translate-x-1 hover:-translate-y-1 hover:border-red-500";
     div.innerHTML = `
              <div class="card-left space-y-3">
             <h2 class="text-xl font-semibold">${element.jobName}</h2>
@@ -118,6 +118,7 @@ mainContainer.addEventListener("click", function (event) {
 
     let jobexist = interviewTotal.find((item) => item.jobName == jobInfo.jobName);
     let statuss = parentNode.querySelector("h3");
+    parentNode.classList.add("greenBorder")
     statuss.classList.remove("reject-border", "inter-border");
     statuss.innerText = "INTERVIEW";
     statuss.classList.add("inter-border");
@@ -150,6 +151,7 @@ mainContainer.addEventListener("click", function (event) {
 
     let jobexist = rejectedTotal.find((item) => item.jobName == jobInfo.jobName);
     let statuss = parentNode.querySelector("h3");
+    parentNode.classList.add("redBorder")
     statuss.classList.remove("reject-border", "inter-border");
     statuss.innerText = "REJECTED";
     statuss.classList.add("reject-border");

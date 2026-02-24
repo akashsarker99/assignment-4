@@ -51,6 +51,7 @@ function findInMain(job){
      let name = card.querySelector('h2').innerText;
      if(job == name){
       let mainStatus = card.querySelector('h3');
+      card.classList.remove('greenBorder', 'redBorder');
        mainStatus.innerText = "NOT APPLIED";
       mainStatus.classList.remove("reject-border", "inter-border");
      }
@@ -65,6 +66,8 @@ let mainCards = totalJobs.querySelectorAll('.bg-white');
      let name = card.querySelector('h2').innerText;
      if(job == name){
       let mainStatus = card.querySelector('h3');
+       card.classList.remove('greenBorder');
+       card.classList.add('redBorder');
        mainStatus.innerText = "REJECTED";
       mainStatus.classList.add("reject-border");
      }
@@ -77,8 +80,10 @@ function findInMainForInterview(job){
      let name = card.querySelector('h2').innerText;
      if(job == name){
       let mainStatus = card.querySelector('h3');
+      card.classList.remove('redBorder');
+      card.classList.add('greenBorder');
       mainStatus.innerText = "INTERVIEW";
-      mainStatus.classList.remove('reject-border');
+      mainStatus.classList.remove('reject-border',);
       mainStatus.classList.add("inter-border");
      }
   }
